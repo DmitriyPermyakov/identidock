@@ -1,0 +1,19 @@
+version: '3'
+services:
+  test:
+    build:
+      context: .
+    ports:
+      - 5000:5000
+    environment:
+      - ENV=DEV
+    volumes:
+      - type: bind
+        source: ./app
+        target: /app
+    links:
+      - dnmonster
+  dnmonster:
+    image: amouat/dnmonster:1.0
+  redis:
+    image: redis:3.0
